@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include "ARVB.h"
 
-const int t = 3;
+const int t = 2;
 
 TAB *SetVM(TAB *T, int V, int M){
 	T->vogal = V;
@@ -13,10 +13,12 @@ TAB *SetVM(TAB *T, int V, int M){
 	return T;
 }
 
+
 int main(){
 	TAB *Arvb = Inicializa();
 	char carac, arq[31];
 	int vogal, maiuscula;
+	int controle = 1, chave;
 
 	printf("Digite o nome do arquivo para formar a Arvore\n");
 	scanf("%s", arq);
@@ -27,7 +29,7 @@ int main(){
 	fscanf(alfab, "%d", &maiuscula);
 
 
-	while (1){
+	while (1){ // Monta a Arvore B
 		Arvb = Insere(Arvb, carac, t);
 		Arvb = SetVM(Arvb, vogal, maiuscula);
 		printf("\n");
@@ -44,8 +46,16 @@ int main(){
 
 		if ((carac == 0) || (carac == 48)) break;
 	}
-	printf("Press ENTER key to Continue\n");  
-	getchar();
-	Libera(Arvb);
+	
+	while (controle){ // controle e chamadas de funcoes da Arvore B
+		printf("Digite 0 para sair, 9 para remover\n");
+		scanf("%d", &controle);
+		if (controle == 9){ // remocao
+			scanf("%d", &chave);
+			Arvb = remover(Arvb, chave, t);
+			Imprime(Arvb, 0);
+		}
+	}
+
 	return 0; 
 }
