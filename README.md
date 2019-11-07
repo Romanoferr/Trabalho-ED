@@ -1,4 +1,4 @@
-## Trabalho computacional: manipulação de árvore B e de Huffman em Criptografia
+# Trabalho computacional: manipulação de árvore B e de Huffman em Criptografia
 
 Dados um texto que deve ser codificado, os caracteres válidos (A...Z e a...z), as
 frequências desses caracteres, onde letras minúsculas e maiúsculas possuem as mesmas
@@ -18,3 +18,5 @@ operações devem ser implementadas nesse trabalho:
   <li>busca de todas as letras de uma determinada classificação</li>
   <li>remoção de todas as letras de uma classificação informada</li>
  </ul>
+
+### Professoras: Isabel Rosseti e Cristina Boeres
