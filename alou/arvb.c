@@ -1,5 +1,4 @@
 #include "arvb.h"
-//const int t = 3;
 
 TAB *Cria(int t){
   TAB* novo = (TAB*)malloc(sizeof(TAB));
@@ -33,7 +32,7 @@ void Imprime(TAB *a, int andar){
     for(i=0; i<=a->nchaves-1; i++){
       Imprime(a->filho[i],andar+1);
       for(j=0; j<=andar; j++) printf("   ");
-      printf("%c\n", a->chave[i]);
+      printf("%d\n", a->chave[i]);
     }
     Imprime(a->filho[i],andar+1);
   }
@@ -269,31 +268,3 @@ TAB* retira(TAB* arv, int k, int t){
   if(!arv || !Busca(arv, k)) return arv;
   return remover(arv, k, t);
 }
-
-
-/*int main(int argc, char *argv[]){
-  TAB * arvore = Inicializa();
-  int num = 0, from, to;
-  while(num != -1){
-    printf("Digite um numero para adicionar. 0 para imprimir. -9 para remover e -1 para sair\n");
-    scanf("%i", &num);
-    if(num == -9){
-      scanf("%d", &from);
-      arvore = retira(arvore, from, t);
-      Imprime(arvore,0);
-    }
-    else if(num == -1){
-      printf("\n");
-      Imprime(arvore,0);
-      Libera(arvore);
-      return 0;
-    }
-    else if(!num){
-      printf("\n");
-      Imprime(arvore,0);
-    }
-    else arvore = Insere(arvore, num, t);
-    printf("\n\n");
-  }
-}
-*/
