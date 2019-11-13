@@ -1,0 +1,107 @@
+//conferir parametros, principalmente ponteiros//
+//faltam: criar a arvore,inserção e remoção, terminar a busca individual e por característica//
+
+typedef struct huffman{
+    char *letra;              //ou vai precisar ser uma string, ou entao as folhas serao um struct diferente dos outros nós, verei //
+    int maiuscula, vogal;
+    struct huffman *filho0, *filho1;
+}TAB;
+
+
+void codifica_caractere(TAB* estrutura, char elemento){ 
+    if (strcmp(estrutura -> letra, elemento) != 0){
+        int tam = strlen(estrutura->filho0->letra);
+        int flag = 0;
+        for (i=0; i<tam; i++){
+            if (strcmp(estrutura-> filho0 -> letra[i] == elemento)){  //supondo que os mais frequentes estarao em filho0 //
+                flag = 1;
+                i = tam;
+            }
+        }
+        if (flag == 1){
+            printf("0");
+            codifica_caractere(estrutura->filho0, elemento);
+        }else{
+            printf("1");
+            codifica_caractere(estrutura->filho1, elemento);
+        }
+    }
+}
+
+void codifica_mensagem(TAB* arvore, char mensagem){
+    int tam = strlen(mensagem);
+    for (i=0; i<tam; i++){
+        char letra = mensagem[i];
+        int ascii = int(elemento);
+        if (int("a") <= ascii <= int("z") || int("A" <= ascii <= int("Z")){   //verifica se é caractere, vou conferir se isso ta certo//
+            codifica_caractere(estrutura, letra);
+        }else{
+            printf("?");
+        }
+    }
+    printf("\n");
+}
+
+
+void decodifica_mensagem(TAB* estrutura, char mensagem){
+    tab *aux = estrutura;
+    int tam = strlen(mensagem);
+    for(i=0; i<strlen; i++){
+        if (mensagem[i] == "?")
+            printf("?");
+        else if(!aux->filho0 && !aux->filho1){
+            printf("%c", aux->letra);
+            aux = estrutura;
+        }else{
+            if (mensagem[i] == "0"){
+                aux = aux->filho0;
+            }else{
+                aux = aux->filho1;
+            }
+        }
+    }
+    printf("\n");
+}
+
+
+void altera_frequencia(TAB* estrutura){
+    char elemento = scanf("%c", &elemento);
+    float valor = scanf("%f", &valor);
+    tab *aux = busca(arvore, elemento);
+    aux->frequencia = valor;
+}
+
+
+
+TAB *Busca(TAB* arvore, char ch){
+    if (strcmp(estrutura -> letra, elemento) != 0){
+        int tam = strlen(estrutura->filho0->letra);
+        int flag = 0;
+        //supondo que os mais frequentes estarao em filho0 //
+        for (i=0; i<tam; i++){
+            if (estrutura-> filho0 -> letra[i] == elemento){
+                flag = 1;
+                i = tam;
+            }
+        }
+        if (flag == 1){
+            Busca(estrutura->filho0, elemento);
+        }else{
+            Busca(estrutura->filho1, elemento);
+        }
+    }
+
+void busca_caracteristica_aux(TAB* estrutura, int andar){
+  if(a){
+    int j;
+    if (!estrutura->filho0 && !estrutura->filho1)
+        printf(estrutura->letra);
+    else{
+    busca_característica_aux(estrutura->filho0, andar + 1);
+    busca_carcteristica_aux(estrutura->filho1, andar + 1);
+  }
+}
+
+void busca_caracteristica(TAB* a){
+  busca_caracteristica_aux(a, 1);
+}
