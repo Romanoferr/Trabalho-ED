@@ -1,7 +1,3 @@
-#include "arvb.h"
-
-int t;
-
 //https://pt.wikipedia.org/wiki/Frequ%C3%AAncia_de_letras
 // To do:
 // Input:  
@@ -28,55 +24,48 @@ int t;
 
 //Done: 
 //     - fator de ramificação (t) da árvore B 
+//---------------------------------------------------------------------------------------------------------------------------------------
 
-TAB *MontaArvb(TAB *T, char c, FILE *caracteres){
-	while (1){
-		T = Insere(T, c, t);
-		printf("\n");
-
-		printf("Caractere %c inserido com sucesso\n", c);
-		Imprime(T, 0);
-		fscanf(caracteres, "%c", &c);
-		if (c == 10) fscanf(caracteres, "%c", &c); // correcao de bug??
-		printf("\n");
-
-		if ((c == 0) || (c == 48)) break; // correcao de bug??
-	}
-	return T;
-}
+#include "arvb.h"
+int t;
 
 int main(int argc, char *argv[]){
+
+    //Pegando o fator de ramificação da árvore (t)
     printf("Digite o fator de ramificacao da arvore: ");
     scanf("%d", &t);
-	int vogal, maiuscula;
 
-	char carac;
-	int controle = 1, chave;
-
-	FILE *caracteres = fopen("char.txt", "rt");
-	if (!caracteres) exit(1);
-	fscanf(caracteres, "%c", &carac);
-	fscanf(alfab, "%d", &vogal);
-
+    //Montando a árvore que contém o alfabeto
     TAB *arvore = Inicializa();
-    arvore = MontaArvb(arvore, carac, caracteres); // cria a arvore com todos os elementos do arquvivo
+    arvore = montaArvB(arvore , "caracteres.txt", t);
 
-    int num = 0, from, to;
+    int num = 0, removido, inserido;
     while(num != -1){
-        printf("0 - Imprimir arvore\n-9 - Remover um valor da arvore\n-1 - Sair\n");
+        printf("============================================================\n");
+        printf("1 - Imprimir arvore\n2 - Inserir um valor na arvore\n3 - Remover um valor da arvore\n0 - Sair\n");
         scanf("%i", &num);
-        if(num == -9){
-            scanf("%d", &from);
-            arvore = retira(arvore, from, t);
+        printf("============================================================\n");
+        if(num == 3){
+            printf("Digite uma letra para remove-la da arvore: ");
+            scanf("%c", &removido);
+            printf("\n");
+            arvore = retira(arvore, removido, t);
             Imprime(arvore,0);
         }
-        else if(num == -1){
+        else if(num == 2){
+            printf("Digite o caractere que deseja inserir na arvore: ");
+            scanf("%d", &inserido);
             printf("\n");
+            arvore = Insere(arvore, inserido, t);
             Imprime(arvore,0);
+        }
+        //Sai do programa
+        else if(!num){
             Libera(arvore);
             return 0;
         }
-        else if(!num){
+        //Imprime a arvore
+        else if(num == 1){
             printf("\n");
             Imprime(arvore,0);
         }

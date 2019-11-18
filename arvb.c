@@ -1,5 +1,10 @@
 #include "arvb.h"
 
+
+TAB *Inicializa(){
+  return NULL;
+}
+
 TAB *Cria(int t){
   TAB* novo = (TAB*)malloc(sizeof(TAB));
   novo->nchaves = 0;
@@ -32,7 +37,7 @@ void Imprime(TAB *a, int andar){
     for(i=0; i<=a->nchaves-1; i++){
       Imprime(a->filho[i],andar+1);
       for(j=0; j<=andar; j++) printf("   ");
-      printf("%d\n", a->chave[i]);
+      printf("%c (%d)\n", a->chave[i], a->chave[i]);
     }
     Imprime(a->filho[i],andar+1);
   }
@@ -48,12 +53,6 @@ TAB *Busca(TAB* x, int ch){
   if(x->folha) return resp;
   return Busca(x->filho[i], ch);
 }
-
-
-TAB *Inicializa(){
-  return NULL;
-}
-
 
 TAB *Divisao(TAB *x, int i, TAB* y, int t){
   TAB *z=Cria(t);
@@ -124,18 +123,15 @@ TAB *Insere(TAB *T, int k, int t){
 TAB* remover(TAB* arv, int ch, int t){
   if(!arv) return arv;
   int i;
-  printf("Removendo %d...\n", ch);
   for(i = 0; i<arv->nchaves && arv->chave[i] < ch; i++);
   if(i < arv->nchaves && ch == arv->chave[i]){ //CASOS 1, 2A, 2B e 2C
     if(arv->folha){ //CASO 1
-      printf("\nCASO 1\n");
       int j;
       for(j=i; j<arv->nchaves-1;j++) arv->chave[j] = arv->chave[j+1];
       arv->nchaves--;
       return arv;      
     }
     if(!arv->folha && arv->filho[i]->nchaves >= t){ //CASO 2A
-      printf("\nCASO 2A\n");
       TAB *y = arv->filho[i];  //Encontrar o predecessor k' de k na árvore com raiz em y
       while(!y->folha) y = y->filho[y->nchaves];
       int temp = y->chave[y->nchaves-1];
@@ -145,7 +141,6 @@ TAB* remover(TAB* arv, int ch, int t){
       return arv;
     }
     if(!arv->folha && arv->filho[i+1]->nchaves >= t){ //CASO 2B
-      printf("\nCASO 2B\n");
       TAB *y = arv->filho[i+1];  //Encontrar o sucessor k' de k na árvore com raiz em y
       while(!y->folha) y = y->filho[0];
       int temp = y->chave[0];
@@ -154,7 +149,6 @@ TAB* remover(TAB* arv, int ch, int t){
       return arv;
     }
     if(!arv->folha && arv->filho[i+1]->nchaves == t-1 && arv->filho[i]->nchaves == t-1){ //CASO 2C
-      printf("\nCASO 2C\n");
       TAB *y = arv->filho[i];
       TAB *z = arv->filho[i+1];
       y->chave[y->nchaves] = ch;          //colocar ch ao final de filho[i]
@@ -178,7 +172,6 @@ TAB* remover(TAB* arv, int ch, int t){
   TAB *y = arv->filho[i], *z = NULL;
   if (y->nchaves == t-1){ //CASOS 3A e 3B
     if((i < arv->nchaves) && (arv->filho[i+1]->nchaves >=t)){ //CASO 3A
-      printf("\nCASO 3A: i menor que nchaves\n");
       z = arv->filho[i+1];
       y->chave[t-1] = arv->chave[i];   //dar a y a chave i da arv
       y->nchaves++;
@@ -195,7 +188,6 @@ TAB* remover(TAB* arv, int ch, int t){
       return arv;
     }
     if((i > 0) && (!z) && (arv->filho[i-1]->nchaves >=t)){ //CASO 3A
-      printf("\nCASO 3A: i igual a nchaves\n");
       z = arv->filho[i-1];
       int j;
       for(j = y->nchaves; j>0; j--)               //encaixar lugar da nova chave
@@ -212,7 +204,6 @@ TAB* remover(TAB* arv, int ch, int t){
     }
     if(!z){ //CASO 3B
       if(i < arv->nchaves && arv->filho[i+1]->nchaves == t-1){
-        printf("\nCASO 3B: i menor que nchaves\n");
         z = arv->filho[i+1];
         y->chave[t-1] = arv->chave[i];     //pegar chave [i] e coloca ao final de filho[i]
         y->nchaves++;
@@ -235,7 +226,6 @@ TAB* remover(TAB* arv, int ch, int t){
         return arv;
       }
       if((i > 0) && (arv->filho[i-1]->nchaves == t-1)){ 
-        printf("\nCASO 3B: i igual a nchaves\n");
         z = arv->filho[i-1];
         if(i == arv->nchaves)
           z->chave[t-1] = arv->chave[i-1]; //pegar chave[i] e poe ao final de filho[i-1]
@@ -267,4 +257,23 @@ TAB* remover(TAB* arv, int ch, int t){
 TAB* retira(TAB* arv, int k, int t){
   if(!arv || !Busca(arv, k)) return arv;
   return remover(arv, k, t);
+}
+
+//Função para montar a árvore b inicial contendo o alfabeto
+TAB *montaArvB(TAB *arvore, char *arquivo_caracteres, int t){
+
+    FILE *caracteres = fopen("caracteres.txt", "rt");
+    if (!caracteres) {
+        printf("Erro ao abrir o arquivo");
+        exit(1);
+    }
+
+    char c;
+    fscanf(caracteres, "%c ", &c);
+    do{
+        arvore = Insere(arvore, c, t);
+    }while (fscanf(caracteres, "%c ", &c) != -1);
+
+    fclose(caracteres);
+    return arvore;
 }

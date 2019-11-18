@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifndef ARVB_H
+#define ARVB_H
+
 typedef struct ArvB{
   int nchaves, folha, *chave;
   struct ArvB **filho;
@@ -26,4 +29,6 @@ TAB* remover(TAB* arv, int ch, int t);
 
 TAB* retira(TAB* arv, int k, int t);
 
-int main(int argc, char *argv[]);
+TAB *montaArvB(TAB *arvore, char *arquivo_caracteres, int t);
+
+#endif
