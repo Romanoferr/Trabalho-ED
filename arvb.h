@@ -31,4 +31,8 @@ TAB* retira(TAB* arv, int k, int t);
 
 TAB *montaArvB(TAB *arvore, char *arquivo_caracteres, int t);
 
+int ehMaiuscula(TAB *arvore, char valor);
+
+int ehVogal(TAB *arvore, char valor);
+
 #endif

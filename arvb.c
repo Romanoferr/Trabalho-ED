@@ -1,6 +1,5 @@
 #include "arvb.h"
 
-
 TAB *Inicializa(){
   return NULL;
 }
@@ -280,3 +279,20 @@ TAB *montaArvB(TAB *arvore, char *arquivo_caracteres, int t){
     fclose(caracteres);
     return arvore;
 }
+
+int ehMaiuscula(TAB *arvore, char valor){
+  if(valor >= 65 && valor <= 90){
+    printf("maiuscula\n");
+    return 1;
+  }else if(valor >=97 && valor <= 122){
+    printf("minuscula\n");
+    return 0;
+  }else{
+    printf("nao eh letra\n");
+    return 0;
+  }
+}
+
+int ehVogal(TAB *arvore, char valor){
+}
+

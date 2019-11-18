@@ -39,7 +39,8 @@ int main(int argc, char *argv[]){
     TAB *arvore = Inicializa();
     arvore = montaArvB(arvore , "caracteres.txt", t);
 
-    int num = 0, removido, inserido;
+    int num = 0;
+    char removido, inserido;
     while(num != -1){
         printf("============================================================\n");
         printf("1 - Imprimir arvore\n2 - Inserir um valor na arvore\n3 - Remover um valor da arvore\n0 - Sair\n");
@@ -47,17 +48,23 @@ int main(int argc, char *argv[]){
         printf("============================================================\n");
         if(num == 3){
             printf("Digite uma letra para remove-la da arvore: ");
-            scanf("%d", &removido);
+            scanf(" %c", &removido);
             printf("\n");
             arvore = retira(arvore, removido, t);
             Imprime(arvore,0);
         }
         else if(num == 2){
             printf("Digite o caractere que deseja inserir na arvore: ");
-            scanf("%d", &inserido);
+            scanf(" %c", &inserido);
             printf("\n");
             arvore = Insere(arvore, inserido, t);
             Imprime(arvore,0);
+        }
+        else if(num == 5){
+            printf("Digite um caracter para saber se ele é maiusculo ou minuscula: ");
+            scanf(" %c", &inserido);
+            printf("\n");
+            ehMaiuscula(arvore, inserido);
         }
         //Sai do programa
         else if(!num){
