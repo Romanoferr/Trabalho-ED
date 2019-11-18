@@ -255,7 +255,10 @@ TAB* remover(TAB* arv, int ch, int t){
 
 
 TAB* retira(TAB* arv, int k, int t){
-  if(!arv || !Busca(arv, k)) return arv;
+  if(!arv || !Busca(arv, k)){
+    printf("O valor inserido nao foi encontrado na arvore\n");
+    return arv;
+  } 
   return remover(arv, k, t);
 }
 

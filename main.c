@@ -47,7 +47,7 @@ int main(int argc, char *argv[]){
         printf("============================================================\n");
         if(num == 3){
             printf("Digite uma letra para remove-la da arvore: ");
-            scanf("%c", &removido);
+            scanf("%d", &removido);
             printf("\n");
             arvore = retira(arvore, removido, t);
             Imprime(arvore,0);
