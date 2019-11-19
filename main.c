@@ -1,5 +1,6 @@
 //https://pt.wikipedia.org/wiki/Frequ%C3%AAncia_de_letras
 // To do:
+// - Apresentação  Sexta 29/11  15:00h
 // Input:  
 //     - texto que deve ser codificado
 //     - caracteres válidos (A...Z e a...z)
