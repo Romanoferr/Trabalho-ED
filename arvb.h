@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #ifndef ARVB_H
 #define ARVB_H
@@ -34,5 +35,7 @@ TAB *montaArvB(TAB *arvore, char *arquivo_caracteres, int t);
 int ehMaiuscula(TAB *arvore, char valor);
 
 int ehVogal(TAB *arvore, char valor);
+
+void decodifica(TAB *arvore, char codigo[]);
 
 #endif

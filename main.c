@@ -25,6 +25,9 @@
 
 //Done: 
 //     - fator de ramificação (t) da árvore B 
+//
+//Local:
+//      - cd Documentos/'ED e Algoritmos'/Trabalho
 //---------------------------------------------------------------------------------------------------------------------------------------
 
 #include "arvb.h"
@@ -44,7 +47,7 @@ int main(int argc, char *argv[]){
     char removido, inserido;
     while(num != -1){
         printf("============================================================\n");
-        printf("1 - Imprimir arvore\n2 - Inserir um valor na arvore\n3 - Remover um valor da arvore\n0 - Sair\n");
+        printf("1 - Imprimir arvore\n2 - Inserir um valor na arvore\n3 - Remover um valor da arvore\n6 - Decodificar uma mensagem\n0 - Sair\n");
         scanf("%i", &num);
         printf("============================================================\n");
         if(num == 3){
@@ -76,6 +79,12 @@ int main(int argc, char *argv[]){
         else if(num == 1){
             printf("\n");
             Imprime(arvore,0);
+        }
+        else if(num == 6){
+            // decodifica
+            char codigo[] = "110";
+            decodifica(arvore, codigo);
+
         }
         printf("\n"); 
     }

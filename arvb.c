@@ -36,7 +36,7 @@ void Imprime(TAB *a, int andar){
     for(i=0; i<=a->nchaves-1; i++){
       Imprime(a->filho[i],andar+1);
       for(j=0; j<=andar; j++) printf("   ");
-      printf("%c (%d)\n", a->chave[i], a->chave[i]);
+      printf("%c (%d) nv%d\n", a->chave[i], a->chave[i], andar);
     }
     Imprime(a->filho[i],andar+1);
   }
@@ -293,6 +293,22 @@ int ehMaiuscula(TAB *arvore, char valor){
   }
 }
 
-int ehVogal(TAB *arvore, char valor){
+/*int ehVogal(TAB *arvore, char valor){
 }
+*/
+void decodifica(TAB *arvore, char codigo[]){
+  //int len = strlen(codigo);
+  int i=0;
+  int k;
+  int nv = (int)codigo[0] - '0';
+  printf("codigo: %s\n", codigo);
+  printf("prim nivel: %d\n", nv);
 
+  for(i; i<=nv; i++){
+    k = (int)codigo[i+1] - '0';
+    printf("valor CHAVE %d, na entrada%d\n", k, i);
+    if (i==nv) printf("%c\n", arvore->chave[k]);
+    else arvore = arvore->filho[k];
+  }
+
+}
