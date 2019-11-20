@@ -81,9 +81,11 @@ int main(int argc, char *argv[]){
             Imprime(arvore,0);
         }
         else if(num == 6){
-            // decodifica
-            char codigo[] = "110";
-            decodifica(arvore, codigo);
+            int deco;
+            char codigo[] = "100";
+            printf("Digite o codigo a ser Decriptografado\n");
+            deco = decodifica(arvore, codigo);
+            printf("%c eh o valor decodificado\n", deco);
 
         }
         printf("\n"); 

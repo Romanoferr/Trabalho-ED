@@ -36,6 +36,6 @@ int ehMaiuscula(TAB *arvore, char valor);
 
 int ehVogal(TAB *arvore, char valor);
 
-void decodifica(TAB *arvore, char codigo[]);
+int decodifica(TAB *arvore, char codigo[]);
 
 #endif

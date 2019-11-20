@@ -296,7 +296,7 @@ int ehMaiuscula(TAB *arvore, char valor){
 /*int ehVogal(TAB *arvore, char valor){
 }
 */
-void decodifica(TAB *arvore, char codigo[]){
+int decodifica(TAB *arvore, char codigo[]){
   //int len = strlen(codigo);
   int i=0;
   int k;
@@ -306,8 +306,8 @@ void decodifica(TAB *arvore, char codigo[]){
 
   for(i; i<=nv; i++){
     k = (int)codigo[i+1] - '0';
-    printf("valor CHAVE %d, na entrada%d\n", k, i);
-    if (i==nv) printf("%c\n", arvore->chave[k]);
+    printf("valor key %d, na entrada%d\n", k, i);
+    if (i==nv) return arvore->chave[k];
     else arvore = arvore->filho[k];
   }
 
